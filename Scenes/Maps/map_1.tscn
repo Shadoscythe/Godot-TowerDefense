@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://txw0euglwiyi"]
+[gd_scene load_steps=17 format=3 uid="uid://txw0euglwiyi"]
 
 [ext_resource type="Texture2D" uid="uid://cpvgmjw8weqdo" path="res://Assets/Enviroment/Tilesets/terrainTiles_default.png" id="1_n4sfv"]
 [ext_resource type="Texture2D" uid="uid://bnlf30qvn7gk5" path="res://Assets/Enviroment/Props/treeBrown_large.png" id="2_7imkj"]
 [ext_resource type="Texture2D" uid="uid://b0ss6760oi3sm" path="res://Assets/Enviroment/Props/treeGreen_large.png" id="3_gguqx"]
+[ext_resource type="Texture2D" uid="uid://b2fjaltioflwk" path="res://Assets/Enviroment/Props/crateMetal.png" id="4_h5dgc"]
+[ext_resource type="Texture2D" uid="uid://cng00tgh0qdbk" path="res://Assets/Enviroment/Props/crateWood.png" id="5_8bmu3"]
+[ext_resource type="PackedScene" uid="uid://8pgmppg07ow1" path="res://Scenes/Towers/gun_t1.tscn" id="6_1ay2q"]
+[ext_resource type="PackedScene" uid="uid://cpby0bxjoq5s8" path="res://Scenes/Towers/machine_gun_t1.tscn" id="7_jdg2u"]
+[ext_resource type="PackedScene" uid="uid://4ji28psx7kuy" path="res://Scenes/Towers/missile_t1.tscn" id="8_2fs6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_07ums"]
 texture = ExtResource("1_n4sfv")
@@ -176,6 +181,16 @@ texture = ExtResource("3_gguqx")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yqie"]
+texture = ExtResource("4_h5dgc")
+texture_region_size = Vector2i(28, 28)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5b47p"]
+texture = ExtResource("5_8bmu3")
+texture_region_size = Vector2i(28, 28)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_bsrtf"]
 tile_size = Vector2i(64, 64)
 terrain_set_0/mode = 0
@@ -184,6 +199,8 @@ terrain_set_0/terrain_0/color = Color(0.619608, 0, 0.65098, 1)
 sources/0 = SubResource("TileSetAtlasSource_0kkdl")
 sources/1 = SubResource("TileSetAtlasSource_c4wjf")
 sources/2 = SubResource("TileSetAtlasSource_als3m")
+sources/3 = SubResource("TileSetAtlasSource_3yqie")
+sources/4 = SubResource("TileSetAtlasSource_5b47p")
 
 [node name="Map1" type="Node2D"]
 
@@ -195,4 +212,15 @@ layer_0/tile_data = PackedInt32Array(720915, 0, 3, 655379, 0, 2, 589843, 0, 3, 5
 [node name="TowerExclusion" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_bsrtf")
 format = 2
-layer_0/tile_data = PackedInt32Array(655360, 131072, 2, 655361, 393216, 3, 589825, 65536, 2, 524289, 65536, 2, 458753, 65536, 2, 393217, 65536, 2, 327682, 131072, 2, 327684, 131072, 2, 327683, 131072, 2, 327681, 196608, 3, 327685, 262144, 3, 393221, 65536, 2, 458757, 65536, 2, 524293, 65536, 2, 589829, 327680, 3, 589830, 131072, 2, 589831, 393216, 3, 524295, 65536, 2, 458759, 65536, 2, 393223, 65536, 2, 327687, 65536, 2, 262151, 65536, 2, 196615, 65536, 2, 131079, 65536, 2, 65543, 196608, 3, 65544, 131072, 2, 65545, 131072, 2, 65546, 131072, 2, 65547, 131072, 2, 65548, 262144, 3, 131084, 65536, 2, 196620, 393216, 3, 196619, 131072, 2, 196618, 196608, 3, 458762, 327680, 3, 458763, 131072, 2, 458764, 131072, 2, 262154, 65536, 2, 327690, 65536, 2, 393226, 65536, 2, 458765, 131072, 2, 458766, 393216, 3, 393230, 65536, 2, 327694, 196608, 3, 327695, 131072, 2, 327696, 131072, 2, 327697, 131072, 2, 327698, 262144, 3, 393234, 65536, 2, 458770, 65536, 2, 524306, 327680, 3, 524307, 131072, 2, 131088, 1, 0, 655374, 1, 0, 196612, 1, 0, 655364, 1, 0, 65537, 1, 0, 327692, 1, 0)
+layer_0/tile_data = PackedInt32Array(655360, 131072, 2, 655361, 393216, 3, 589825, 65536, 2, 524289, 65536, 2, 458753, 65536, 2, 393217, 65536, 2, 327682, 131072, 2, 327684, 131072, 2, 327683, 131072, 2, 327681, 196608, 3, 327685, 262144, 3, 393221, 65536, 2, 458757, 65536, 2, 524293, 65536, 2, 589829, 327680, 3, 589830, 131072, 2, 589831, 393216, 3, 524295, 65536, 2, 458759, 65536, 2, 393223, 65536, 2, 327687, 65536, 2, 262151, 65536, 2, 196615, 65536, 2, 131079, 65536, 2, 65543, 196608, 3, 65544, 131072, 2, 65545, 131072, 2, 65546, 131072, 2, 65547, 131072, 2, 65548, 262144, 3, 131084, 65536, 2, 196620, 393216, 3, 196619, 131072, 2, 196618, 196608, 3, 458762, 327680, 3, 458763, 131072, 2, 458764, 131072, 2, 262154, 65536, 2, 327690, 65536, 2, 393226, 65536, 2, 458765, 131072, 2, 458766, 393216, 3, 393230, 65536, 2, 327694, 196608, 3, 327695, 131072, 2, 327696, 131072, 2, 327697, 131072, 2, 327698, 262144, 3, 393234, 65536, 2, 458770, 65536, 2, 524306, 327680, 3, 524307, 131072, 2, 131088, 1, 0, 196612, 1, 0, 655364, 1, 0, 65537, 1, 0, 327692, 1, 0, 655374, 1, 0, 393219, 4, 0, 131083, 4, 0, 458768, 4, 0, 720904, 4, 0, 4, 4, 0, 262144, 4, 0, 458761, 4, 0, 589827, 3, 0, 720896, 3, 0, 131090, 3, 0, 10, 3, 0, 262152, 3, 0, 655376, 3, 0)
+
+[node name="TurretController" type="Node2D" parent="."]
+
+[node name="GunT1" parent="TurretController" instance=ExtResource("6_1ay2q")]
+position = Vector2(730, 423)
+
+[node name="MachineGunT1" parent="TurretController" instance=ExtResource("7_jdg2u")]
+position = Vector2(540, 156)
+
+[node name="MissileT1" parent="TurretController" instance=ExtResource("8_2fs6s")]
+position = Vector2(415, 541)
