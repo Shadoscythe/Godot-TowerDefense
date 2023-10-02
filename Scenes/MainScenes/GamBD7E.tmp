@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://dw548hdpeouam"]
+
+[ext_resource type="Script" path="res://Scenes/MainScenes/game_scene.gd" id="1_875xw"]
+[ext_resource type="PackedScene" uid="uid://txw0euglwiyi" path="res://Scenes/Maps/map_1.tscn" id="1_sw4b5"]
+[ext_resource type="Texture2D" uid="uid://b47xdqllunvvq" path="res://Assets/UI/Buttons/Orange/red_button09.png" id="2_hclnc"]
+[ext_resource type="Texture2D" uid="uid://dnhb5bj0yre1t" path="res://Assets/Towers/towerDefense_tile249.png" id="3_78wrr"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/UI.gd" id="3_bmuad"]
+[ext_resource type="Texture2D" uid="uid://wk8melg8j8f3" path="res://Assets/Towers/towerDefense_tile250.png" id="4_x2w0b"]
+[ext_resource type="Texture2D" uid="uid://bidqbpiuk7m3l" path="res://Assets/Towers/towerDefense_tile251.png" id="5_7ljmr"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_875xw")
+
+[node name="Map1" parent="." instance=ExtResource("1_sw4b5")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_bmuad")
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 400.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+
+[node name="BuildBar" type="VBoxContainer" parent="UI/HUD/MarginContainer"]
+custom_minimum_size = Vector2(100, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Gun" type="TextureButton" parent="UI/HUD/MarginContainer/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_hclnc")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/MarginContainer/BuildBar/Gun"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("3_78wrr")
+stretch_mode = 2
+
+[node name="MachineGun" type="TextureButton" parent="UI/HUD/MarginContainer/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_hclnc")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/MarginContainer/BuildBar/MachineGun"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("4_x2w0b")
+stretch_mode = 2
+
+[node name="Missile" type="TextureButton" parent="UI/HUD/MarginContainer/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_hclnc")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/MarginContainer/BuildBar/Missile"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("5_7ljmr")
+stretch_mode = 2

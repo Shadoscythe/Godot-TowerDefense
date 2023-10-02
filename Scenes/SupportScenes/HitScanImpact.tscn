@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://b88jj0og7ly0c"]
+
+[ext_resource type="Texture2D" uid="uid://mot6x8dbrwq0" path="res://Assets/Effects/SmokyHit/explosionSmoke1.png" id="1_jwdd2"]
+[ext_resource type="Texture2D" uid="uid://dnq1agc4h8im2" path="res://Assets/Effects/SmokyHit/explosionSmoke2.png" id="2_rcion"]
+[ext_resource type="Texture2D" uid="uid://ckx7m0t2uqb70" path="res://Assets/Effects/SmokyHit/explosionSmoke3.png" id="3_qcl21"]
+[ext_resource type="Texture2D" uid="uid://h5r82atjqy6m" path="res://Assets/Effects/SmokyHit/explosionSmoke4.png" id="4_bf471"]
+[ext_resource type="Texture2D" uid="uid://itr48rixq11b" path="res://Assets/Effects/SmokyHit/explosionSmoke5.png" id="5_33ad3"]
+[ext_resource type="Script" path="res://Scenes/SupportScenes/hit_scan_impact.gd" id="6_yvkfd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_00g2a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jwdd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rcion")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qcl21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bf471")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_33ad3")
+}],
+"loop": false,
+"name": &"ImpactSmoke",
+"speed": 5.0
+}]
+
+[node name="HitScanImpact" type="AnimatedSprite2D"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_00g2a")
+animation = &"ImpactSmoke"
+frame = 4
+frame_progress = 1.0
+speed_scale = 5.0
+script = ExtResource("6_yvkfd")
+
+[connection signal="animation_finished" from="." to="." method="_on_hit_scan_impact_finished"]

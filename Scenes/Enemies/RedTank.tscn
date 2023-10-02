@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs148an52htvi"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/red_tank.gd" id="1_gjxpn"]
+[ext_resource type="Texture2D" uid="uid://cwv86xe6puch7" path="res://Assets/Enemies/tank_red.png" id="1_ub163"]
+[ext_resource type="Texture2D" uid="uid://cvn733esl30p7" path="res://Assets/UI/Art/HPbar.jpg" id="2_c0l0p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_loitg"]
+size = Vector2(46, 42)
+
+[node name="RedTank" type="PathFollow2D"]
+script = ExtResource("1_gjxpn")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_loitg")
+
+[node name="TankSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ub163")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(1, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -27.0
+offset_right = 0.5
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 2)
+value = 8.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_c0l0p")
+texture_progress = ExtResource("2_c0l0p")
+tint_under = Color(0.25098, 0.25098, 0.25098, 1)
+tint_progress = Color(0.415686, 0.705882, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Impact" type="Node2D" parent="."]
+position = Vector2(-15, -15)
