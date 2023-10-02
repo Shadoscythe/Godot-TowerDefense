@@ -9,7 +9,7 @@
 
 [sub_resource type="Animation" id="Animation_kylcv"]
 resource_name = "Fire1"
-length = 0.15
+length = 0.05
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_bo6fx"]
 resource_name = "Fire2"
-length = 0.15
+length = 0.05
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -64,7 +64,7 @@ position = Vector2(41, 6)
 visible = false
 position = Vector2(8, 0)
 rotation = 1.5708
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_y82ly")
 
 [node name="Muzzle2" type="Node2D" parent="Turret"]

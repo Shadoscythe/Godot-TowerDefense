@@ -11,7 +11,8 @@ var tower_data = {
 		"damage": 100,
 		"rof": 3,
 		"range": 550,
-		"category": "Projectile"},
+		"category": "Projectile",
+		"barrelcount": 2},
 	"MachineGunT1": {
 		"damage": 15,
 		"rof": .5,
@@ -23,7 +24,7 @@ var tower_data = {
 
 var tank_data = {
 	"SandTank": {
-		"hp": 1000,
+		"hp": 50,
 		"speed": 150},
 	"RedTank": {
 		"hp": 100,

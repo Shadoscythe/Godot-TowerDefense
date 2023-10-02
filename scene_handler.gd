@@ -51,7 +51,9 @@ func on_back_button_pressed():
 	get_node("CurrentScene").queue_free()
 	previous_scene = game_scene
 	load_main_menu()
-	
+
+func load_scene(scene):
+	pass
 	
 #	game_scene = previous_scene
 #	game_scene.instantiate()
