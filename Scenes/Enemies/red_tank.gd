@@ -3,8 +3,12 @@ extends PathFollow2D
 var tank_type = "RedTank"
 var speed = GameData.tank_data[tank_type]["speed"]
 var hp = GameData.tank_data[tank_type]["hp"]
+var damage = GameData.tank_data[tank_type]["damage"]
+var reward = GameData.tank_data[tank_type]["reward"]
 var health_bar_size = Vector2(hp / 3 + 20, 4)
+var dead = false
 
+@onready var game_scene = $/root/SceneHandler/GameScene
 @onready var health_bar = $HealthBar
 @onready var impact_area = $Impact
 var HitScanImpact = preload("res://Scenes/SupportScenes/HitScanImpact.tscn")
@@ -14,15 +18,20 @@ func _ready():
 	health_bar.value = hp
 	health_bar.set_scale(health_bar_size)
 	health_bar.set_as_top_level(true)
-	
+	health_bar.set_position(position  - Vector2(0,30))
+	health_bar.set_visible(true)
 
 func _physics_process(delta):
-	move(delta)
+	if get_progress_ratio() == 1.0:
+		game_scene.on_base_damage(damage)
+		queue_free()
+	if not dead:
+		move(delta)
 	
-
 func move(delta):
 	set_progress(get_progress() + speed * delta)
 	health_bar.set_position(position - Vector2(0,30))
+	
 	
 func hit_scan_impact():
 	randomize()
@@ -42,6 +51,9 @@ func on_hit(damage):
 		on_destroy()
 		
 func on_destroy():
+	dead = true
+	health_bar.set_visible(false)
+	game_scene.reward(reward)
 	$CharacterBody2D.queue_free()
 	await get_tree().create_timer(.2).timeout
 	self.queue_free()

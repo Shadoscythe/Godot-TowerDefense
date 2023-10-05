@@ -19,6 +19,7 @@ func _physics_process(delta):
 			fire()
 	else:
 		target = null
+
 func aim():
 	get_node("Turret").look_at(target.position)
 
@@ -36,15 +37,14 @@ func fire():
 	target.on_hit(GameData.tower_data[tower_type]["damage"])
 	await get_tree().create_timer(GameData.tower_data[tower_type]["rof"]).timeout
 	ready_to_fire = true
-	print("fire")
-	
+
 func fire_hit_scan():
 	var animation_number = str(fire_barrel)
 	AnimPlayer.play("Fire" + animation_number)
 	fire_barrel += 1
 	if fire_barrel > barrel_count:
 		fire_barrel = 1	
-	
+
 func fire_projectile():
 	pass
 	
@@ -55,7 +55,7 @@ func select_enemy():
 	var max_offset = enemy_progress_array.max()
 	var enemy_index = enemy_progress_array.find(max_offset)
 	target = enemy_array[enemy_index]
-	
+
 func _on_Range_body_entered(body):
 	enemy_array.append(body.get_parent())
 

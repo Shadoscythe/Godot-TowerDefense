@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxnuqr307k1gy"]
+[gd_scene load_steps=7 format=3 uid="uid://cxnuqr307k1gy"]
 
 [ext_resource type="Texture2D" uid="uid://c3f42cmbyyqrr" path="res://Assets/UI/Art/BackGround.png" id="1_2l68r"]
+[ext_resource type="Script" path="res://Scenes/UIScenes/main_menu.gd" id="1_g1f83"]
 [ext_resource type="Texture2D" uid="uid://kbf7q8ja3g5s" path="res://Assets/UI/Buttons/Orange/red_button00.png" id="2_o343t"]
 [ext_resource type="Texture2D" uid="uid://cxwdlnr2w7kju" path="res://Assets/UI/Buttons/Orange/red_button02.png" id="3_6diis"]
 [ext_resource type="FontFile" uid="uid://0ihspa5mh3jy" path="res://Assets/Fonts/kenvector_future.ttf" id="4_ceymd"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_g1f83")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

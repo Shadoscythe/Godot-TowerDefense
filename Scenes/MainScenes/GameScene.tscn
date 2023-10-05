@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw548hdpeouam"]
+[gd_scene load_steps=17 format=3 uid="uid://dw548hdpeouam"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/game_scene.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://txw0euglwiyi" path="res://Scenes/Maps/map_1.tscn" id="1_sw4b5"]
@@ -11,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://dfrcx6113a6kl" path="res://Assets/UI/Buttons/HUD/right.png" id="9_dklka"]
 [ext_resource type="Texture2D" uid="uid://b70e0t18kkd7n" path="res://Assets/UI/Buttons/HUD/pause.png" id="10_t33ix"]
 [ext_resource type="Texture2D" uid="uid://dxvydt5m3elum" path="res://Assets/UI/Buttons/HUD/fastForward.png" id="11_glpe6"]
+[ext_resource type="FontFile" uid="uid://c0feemqudg6jy" path="res://Assets/Fonts/Kenney Mini Square.ttf" id="12_of5yq"]
+[ext_resource type="Texture2D" uid="uid://ds0jb5v0qjpo" path="res://Assets/UI/Buttons/HUD/fastForwardHollow.png" id="12_p6ou5"]
+[ext_resource type="Texture2D" uid="uid://3k01jije8d01" path="res://Assets/UI/Art/plus.png" id="13_8sqe3"]
+[ext_resource type="Texture2D" uid="uid://cvn733esl30p7" path="res://Assets/UI/Art/HPbar.jpg" id="14_7v07j"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/ui_health_bar.gd" id="15_xvlqt"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_875xw")
@@ -35,7 +40,8 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -100.0
-offset_bottom = 400.0
+offset_top = 60.0
+offset_bottom = 470.0
 grow_horizontal = 0
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 10
@@ -142,21 +148,150 @@ grow_vertical = 0
 
 [node name="PausePlay" type="TextureButton" parent="UI/HUD/GameControls"]
 process_mode = 3
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
 texture_normal = ExtResource("9_dklka")
 texture_pressed = ExtResource("10_t33ix")
+ignore_texture_size = true
 stretch_mode = 0
 
 [node name="FastForward" type="TextureButton" parent="UI/HUD/GameControls"]
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("11_glpe6")
+toggle_mode = true
+texture_normal = ExtResource("12_p6ou5")
+texture_pressed = ExtResource("11_glpe6")
+ignore_texture_size = true
 stretch_mode = 0
+
+[node name="InfoBar" type="ColorRect" parent="UI/HUD"]
+self_modulate = Color(0, 0, 0, 0.490196)
+custom_minimum_size = Vector2(1280, 80)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 60.0
+grow_horizontal = 2
+pivot_offset = Vector2(640, 0)
+
+[node name="InfoBarMarginContainer" type="MarginContainer" parent="UI/HUD/InfoBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 50)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="InfoBarHbox" type="HBoxContainer" parent="UI/HUD/InfoBar/InfoBarMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="DollarContainer" type="HBoxContainer" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DollarSign" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/DollarContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.392157, 0.619608, 0.192157, 1)
+theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_font_sizes/font_size = 60
+text = "$:"
+horizontal_alignment = 1
+
+[node name="DollarCount" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/DollarContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_font_sizes/font_size = 50
+text = "999999"
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Spacer" type="Control" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RemainingWaves" type="HBoxContainer" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WavesRemainingLabel" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/RemainingWaves"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_font_sizes/font_size = 30
+text = "Remaining Waves:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyCount" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/RemainingWaves"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.65098, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_font_sizes/font_size = 40
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="HealthInfo" type="HBoxContainer" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HealthIcon" type="TextureRect" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/HealthInfo"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("13_8sqe3")
+expand_mode = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/HealthInfo"]
+custom_minimum_size = Vector2(400, 30)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("14_7v07j")
+texture_progress = ExtResource("14_7v07j")
+tint_under = Color(0.262745, 0.262745, 0.262745, 1)
+tint_progress = Color(0.427451, 0.52549, 0, 1)
+script = ExtResource("15_xvlqt")
 
 [connection signal="pressed" from="UI/HUD/GameControls/PausePlay" to="." method="_on_PausePlay_pressed"]
 [connection signal="pressed" from="UI/HUD/GameControls/FastForward" to="." method="_on_FastForward_pressed"]

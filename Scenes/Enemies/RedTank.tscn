@@ -8,6 +8,7 @@
 size = Vector2(46, 42)
 
 [node name="RedTank" type="PathFollow2D"]
+loop = false
 script = ExtResource("1_gjxpn")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]

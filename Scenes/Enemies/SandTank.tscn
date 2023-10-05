@@ -20,6 +20,7 @@ shape = SubResource("RectangleShape2D_volvc")
 texture = ExtResource("1_nxhge")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
+visible = false
 custom_minimum_size = Vector2(1, 1)
 anchors_preset = 8
 anchor_left = 0.5
