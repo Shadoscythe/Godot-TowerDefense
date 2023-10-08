@@ -5,6 +5,7 @@ signal game_finished(result)
 
 var base_health = 100
 var paused = false
+var fast_forward_multiplier = 5.0
 
 # Map Data
 @onready var map = $Map1 #what map are we using
@@ -34,8 +35,8 @@ var map_name = "Map1"
 var SandTank = preload("res://Scenes/Enemies/SandTank.tscn")
 var RedTank = preload("res://Scenes/Enemies/RedTank.tscn")
 
-var Tanks = {
-	"SandTank": SandTank,
+var Tanks = {                #This dictionary is a workaround in order to get tanks to spawn using preloaded variables
+	"SandTank": SandTank,     
 	"RedTank": RedTank,
 	}
 #
@@ -144,31 +145,32 @@ func add_to_exclusion(tile):
 
 func start_next_wave():
 	print(current_wave)
-	await get_tree().create_timer(.2).timeout #padding between waves
+	await get_tree().create_timer(5.0).timeout #padding between waves
 	retrieve_wave_data(map_name, str(current_wave))
-	spawn_enemies()
+	spawn_enemies(3)
 	
-func retrieve_wave_data(map, wave):
-	enemy_types_in_wave = WaveData.Maps["Map1"][wave].keys()
+func retrieve_wave_data(map, wave):                             ###
+	enemy_types_in_wave = WaveData.Maps[map][wave].keys()
 	for i in enemy_types_in_wave.size():
-		for x in WaveData.Maps[map][wave][enemy_types_in_wave[i]]:
+		for x in WaveData.Maps[map][wave][enemy_types_in_wave[i]]:       #MAGIC VOODOO DO NOT BREAK
 			enemies_in_wave.append(enemy_types_in_wave[i])
+																###
 	
-func spawn_enemies():
+func spawn_enemies(max_waves):
+	print(enemies_in_wave)
 	for i in enemies_in_wave:
 		print(i)
 		var new_enemy = Tanks[i].instantiate()
 		path.add_child(new_enemy, false)
-		await get_tree().create_timer(1.0).timeout
-		if get_tree().is_paused():
-			print("pause")
-			print(paused)
-			await not paused
-	current_wave += 1
-	print(current_wave)
-	start_next_wave()	
+		await get_tree().create_timer(1.0, false).timeout
+	if current_wave < max_waves:
+		current_wave += 1
+		enemies_in_wave.clear()
+		start_next_wave()
+	else:
+		pass
+		
 	
-
 #
 # Game Control
 #
@@ -180,12 +182,24 @@ func reward(reward):
 	UI.update_money_counter(money)
 
 func on_base_damage(damage): #take damage from enemy tanks when they reach the end
+	print(base_health)
 	base_health -= damage
+	print("after hit:" + str(base_health))
+	if damage > base_health:
+		base_health = 0
+		UI.update_health_bar(base_health)
 	if base_health <= 0:
 		game_finished.emit()
+		game_over()
 	else:
 		UI.update_health_bar(base_health)
 
+func game_over():
+	var game_over_screen = load ("res://Scenes/UIScenes/GameOver.tscn").instantiate()
+	UI.add_child(game_over_screen)
+	get_tree().paused = true
+	paused = true
+	$UI/HUD.visible = false
 	
 func _on_PausePlay_pressed(): #pause and play the game with pause button
 	if build_mode:
@@ -194,8 +208,9 @@ func _on_PausePlay_pressed(): #pause and play the game with pause button
 		get_tree().paused = false
 		paused = false
 	elif current_wave == 0:
-		current_wave +=1
+		current_wave = 1
 		start_next_wave()
+		print("begin")
 	else:
 		get_tree().paused = true
 		paused = true
@@ -203,7 +218,7 @@ func _on_PausePlay_pressed(): #pause and play the game with pause button
 func _on_FastForward_pressed(): #fast forward game speed
 	if build_mode:
 		cancel_build_mode() 
-	if Engine.get_time_scale() == 2.0:
+	if Engine.get_time_scale() == fast_forward_multiplier:
 		Engine.set_time_scale(1.0)
 	else:
-		Engine.set_time_scale(2.0)
+		Engine.set_time_scale(fast_forward_multiplier)
