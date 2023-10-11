@@ -6,6 +6,7 @@ signal game_finished(result)
 var base_health = 100
 var paused = false
 var fast_forward_multiplier = 5.0
+var enemies_killed = 0
 
 # Map Data
 @onready var map = $Map1 #what map are we using
@@ -154,8 +155,9 @@ func retrieve_wave_data(map, wave):                             ###
 	for i in enemy_types_in_wave.size():
 		for x in WaveData.Maps[map][wave][enemy_types_in_wave[i]]:       #MAGIC VOODOO DO NOT BREAK
 			enemies_in_wave.append(enemy_types_in_wave[i])
+
 																###
-	
+
 func spawn_enemies(max_waves):
 	print(enemies_in_wave)
 	for i in enemies_in_wave:

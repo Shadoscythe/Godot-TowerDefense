@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://3xx8cehuacdq" path="res://Assets/UI/Buttons/White/grey_panel.png" id="1_crca0"]
 [ext_resource type="Script" path="res://Scenes/UIScenes/game_over.gd" id="1_grjmk"]
-[ext_resource type="FontFile" uid="uid://0ihspa5mh3jy" path="res://Assets/Fonts/kenvector_future.ttf" id="2_jejtx"]
-[ext_resource type="Texture2D" uid="uid://b47xdqllunvvq" path="res://Assets/UI/Buttons/Orange/red_button09.png" id="3_51ynk"]
+[ext_resource type="FontFile" uid="uid://b1wdchuh1282x" path="res://Assets/Fonts/squarefont/Square.ttf" id="3_b7v57"]
+[ext_resource type="Texture2D" uid="uid://c3jdgqpfq216q" path="res://Assets/UI/Buttons/White/grey_button12.png" id="4_5ims2"]
 [ext_resource type="Texture2D" uid="uid://die6lq7ejw25e" path="res://Assets/UI/Art/return.png" id="4_qmdyw"]
 [ext_resource type="Texture2D" uid="uid://bmsoc2voflnda" path="res://Assets/UI/Buttons/Icon/cross.png" id="5_vvojh"]
 
@@ -16,6 +16,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_grjmk")
 
+[node name="Background" type="NinePatchRect" parent="."]
+self_modulate = Color(0.478431, 0.321569, 0.321569, 0.45098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_crca0")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -23,13 +37,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 75
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 75
-theme_override_constants/margin_right = 75
+theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 200
 
 [node name="Background" type="NinePatchRect" parent="MarginContainer"]
-self_modulate = Color(0.560784, 0.34902, 0.133333, 0.462745)
+self_modulate = Color(0.439216, 0.439216, 0.439216, 0.745098)
 layout_mode = 2
 texture = ExtResource("1_crca0")
 patch_margin_left = 10
@@ -50,6 +64,67 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 30
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 25
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/Background/MarginContainer/MarginContainer"]
+self_modulate = Color(0.368627, 0.368627, 0.368627, 1)
+layout_mode = 2
+texture = ExtResource("1_crca0")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Background/MarginContainer/MarginContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Background/MarginContainer/MarginContainer/Background/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/Background/MarginContainer/MarginContainer/Background/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CurrentWaveLabel" type="Label" parent="MarginContainer/Background/MarginContainer/MarginContainer/Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0.160784, 0.160784, 0.160784, 1)
+theme_override_colors/font_outline_color = Color(0.227451, 0.227451, 0.227451, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_b7v57")
+theme_override_font_sizes/font_size = 35
+text = "Current Wave: 4/10"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/Background/MarginContainer/MarginContainer/Background/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="EnemiesKilledLable" type="Label" parent="MarginContainer/Background/MarginContainer/MarginContainer/Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0.160784, 0.160784, 0.160784, 1)
+theme_override_colors/font_outline_color = Color(0.227451, 0.227451, 0.227451, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_b7v57")
+theme_override_font_sizes/font_size = 35
+text = "Enemies Killed: 10"
+
 [node name="GameOver" type="Label" parent="MarginContainer/Background/MarginContainer"]
 self_modulate = Color(0.678431, 0.0470588, 0.0588235, 1)
 layout_mode = 2
@@ -59,7 +134,7 @@ theme_override_colors/font_outline_color = Color(0.219608, 0.219608, 0.219608, 1
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 15
-theme_override_fonts/font = ExtResource("2_jejtx")
+theme_override_fonts/font = ExtResource("3_b7v57")
 theme_override_font_sizes/font_size = 75
 text = "Game Over"
 horizontal_alignment = 1
@@ -71,11 +146,12 @@ size_flags_vertical = 8
 
 [node name="RetryButton" type="TextureButton" parent="MarginContainer/Background/MarginContainer/Buttons"]
 process_mode = 3
+self_modulate = Color(0.219608, 0.592157, 0.819608, 1)
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture_normal = ExtResource("3_51ynk")
+texture_normal = ExtResource("4_5ims2")
 stretch_mode = 0
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/Background/MarginContainer/Buttons/RetryButton"]
@@ -97,11 +173,12 @@ expand_mode = 1
 
 [node name="ExitButton" type="TextureButton" parent="MarginContainer/Background/MarginContainer/Buttons"]
 process_mode = 3
+self_modulate = Color(0.219608, 0.592157, 0.819608, 1)
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture_normal = ExtResource("3_51ynk")
+texture_normal = ExtResource("4_5ims2")
 stretch_mode = 0
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/Background/MarginContainer/Buttons/ExitButton"]

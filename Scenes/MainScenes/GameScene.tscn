@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dfrcx6113a6kl" path="res://Assets/UI/Buttons/HUD/right.png" id="9_dklka"]
 [ext_resource type="Texture2D" uid="uid://b70e0t18kkd7n" path="res://Assets/UI/Buttons/HUD/pause.png" id="10_t33ix"]
 [ext_resource type="Texture2D" uid="uid://dxvydt5m3elum" path="res://Assets/UI/Buttons/HUD/fastForward.png" id="11_glpe6"]
-[ext_resource type="FontFile" uid="uid://c0feemqudg6jy" path="res://Assets/Fonts/Kenney Mini Square.ttf" id="12_of5yq"]
 [ext_resource type="Texture2D" uid="uid://ds0jb5v0qjpo" path="res://Assets/UI/Buttons/HUD/fastForwardHollow.png" id="12_p6ou5"]
 [ext_resource type="Texture2D" uid="uid://3k01jije8d01" path="res://Assets/UI/Art/plus.png" id="13_8sqe3"]
+[ext_resource type="FontFile" uid="uid://b1wdchuh1282x" path="res://Assets/Fonts/squarefont/Square.ttf" id="13_87cm3"]
 [ext_resource type="Texture2D" uid="uid://cvn733esl30p7" path="res://Assets/UI/Art/HPbar.jpg" id="14_7v07j"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/ui_health_bar.gd" id="15_xvlqt"]
 
@@ -44,7 +44,7 @@ offset_top = 60.0
 offset_bottom = 470.0
 grow_horizontal = 0
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 25
 
 [node name="BuildBar" type="VBoxContainer" parent="UI/HUD/MarginContainer"]
 custom_minimum_size = Vector2(100, 400)
@@ -209,21 +209,20 @@ theme_override_colors/font_color = Color(0.392157, 0.619608, 0.192157, 1)
 theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_fonts/font = ExtResource("13_87cm3")
 theme_override_font_sizes/font_size = 60
-text = "$:"
+text = "$ "
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DollarCount" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/DollarContainer"]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_fonts/font = ExtResource("13_87cm3")
 theme_override_font_sizes/font_size = 50
 text = "999999"
 vertical_alignment = 1
@@ -246,13 +245,13 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_fonts/font = ExtResource("13_87cm3")
 theme_override_font_sizes/font_size = 30
 text = "Remaining Waves:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyCount" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/RemainingWaves"]
+[node name="WaveCount" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/RemainingWaves"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -260,14 +259,14 @@ theme_override_colors/font_color = Color(1, 0.65098, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("12_of5yq")
+theme_override_fonts/font = ExtResource("13_87cm3")
 theme_override_font_sizes/font_size = 40
-text = "4"
+text = " 4/10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spacer2" type="Control" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(115, 0)
 layout_mode = 2
 
 [node name="HealthInfo" type="HBoxContainer" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox"]

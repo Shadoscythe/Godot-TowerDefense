@@ -57,3 +57,5 @@ func on_destroy():
 	$CharacterBody2D.queue_free()
 	await get_tree().create_timer(.2).timeout
 	self.queue_free()
+	game_scene.enemies_killed += 1
+	print("enemies killed" + str(game_scene.enemies_killed))
