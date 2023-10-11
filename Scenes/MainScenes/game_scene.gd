@@ -161,7 +161,7 @@ func spawn_enemies(max_waves):
 	for i in enemies_in_wave:
 		print(i)
 		var new_enemy = Tanks[i].instantiate()
-		path.add_child(new_enemy, false)
+		path.add_child(new_enemy, true)
 		await get_tree().create_timer(1.0, false).timeout
 	if current_wave < max_waves:
 		current_wave += 1

@@ -1,10 +1,10 @@
 extends PathFollow2D
 
-var tank_type = "RedTank"
-var speed = GameData.tank_data[tank_type]["speed"]
-var hp = GameData.tank_data[tank_type]["hp"]
-var damage = GameData.tank_data[tank_type]["damage"]
-var reward = GameData.tank_data[tank_type]["reward"]
+var enemy_type = "RedTank"
+var speed = GameData.enemy_data[enemy_type]["speed"]
+var hp = GameData.enemy_data[enemy_type]["hp"]
+var damage = GameData.enemy_data[enemy_type]["damage"]
+var reward = GameData.enemy_data[enemy_type]["reward"]
 var health_bar_size = Vector2(hp / 3 + 20, 4)
 var dead = false
 

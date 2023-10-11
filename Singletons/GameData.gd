@@ -31,16 +31,26 @@ var tower_data = {
 	}
 	
 
-var tank_data = {
+var enemy_data = {
+	"WoodCrate": {
+		"hp": 200,
+		"reward": 100,
+		"type": "crate"},
+	"SteelCrate": {
+		"hp": 500,
+		"reward": 250,
+		"type": "crate"},	
 	"SandTank": {
 		"hp": 50,
 		"speed": 150,
 		"damage": 20,
-		"reward": 10},
+		"reward": 10,
+		"type": "tank"},
 	"RedTank": {
 		"hp": 100,
 		"speed": 100,
 		"damage": 30,
-		"reward": 20}
+		"reward": 20,
+		"type": "tank"}
 	}
 
