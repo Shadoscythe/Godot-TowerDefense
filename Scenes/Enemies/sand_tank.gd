@@ -51,11 +51,10 @@ func on_hit(damage):
 		on_destroy()
 		
 func on_destroy():
+	self.queue_free()
 	dead = true
 	health_bar.set_visible(false)
 	game_scene.reward(reward)
 	$CharacterBody2D.queue_free()
 	await get_tree().create_timer(.2).timeout
-	self.queue_free()
 	game_scene.enemies_killed += 1
-	print("enemies killed" + str(game_scene.enemies_killed))

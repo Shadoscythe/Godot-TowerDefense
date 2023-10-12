@@ -31,6 +31,7 @@ var current_wave = 0 #what wave number is the current wave
 var enemies_in_wave = [] #how many enemies left in wave
 var enemy_types_in_wave #what enemy types are in the wave
 var map_name = "Map1"
+@onready var max_wave = WaveData.Maps[map_name].keys().size()
 
 #Tank preload
 var SandTank = preload("res://Scenes/Enemies/SandTank.tscn")
@@ -46,7 +47,7 @@ var Tanks = {                #This dictionary is a workaround in order to get ta
 
 func _ready():
 	UI.update_money_counter(money)
-
+	map.get_node("Path").wave_cleared.connect(on_wave_cleared)
 func _process(delta):
 	if build_mode:
 		update_tower_preview()
@@ -54,7 +55,6 @@ func _process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel") and build_mode:
 		cancel_build_mode()
-		print('cancel')
 	if event.is_action_pressed("ui_accept") and build_mode:
 		verify_and_build()
 	if event.is_action_pressed("ui_modifier") and build_mode:
@@ -145,10 +145,13 @@ func add_to_exclusion(tile):
 #
 
 func start_next_wave():
-	print(current_wave)
+	if current_wave < max_wave:
+		current_wave += 1
+		enemies_in_wave.clear()
+	UI.update_wave_counter()
 	await get_tree().create_timer(5.0).timeout #padding between waves
 	retrieve_wave_data(map_name, str(current_wave))
-	spawn_enemies(3)
+	spawn_enemies(max_wave)
 	
 func retrieve_wave_data(map, wave):                             ###
 	enemy_types_in_wave = WaveData.Maps[map][wave].keys()
@@ -159,20 +162,20 @@ func retrieve_wave_data(map, wave):                             ###
 																###
 
 func spawn_enemies(max_waves):
-	print(enemies_in_wave)
 	for i in enemies_in_wave:
-		print(i)
 		var new_enemy = Tanks[i].instantiate()
 		path.add_child(new_enemy, true)
 		await get_tree().create_timer(1.0, false).timeout
-	if current_wave < max_waves:
-		current_wave += 1
-		enemies_in_wave.clear()
-		start_next_wave()
-	else:
-		pass
 		
-	
+func find_map_max_wave(): #finds the maps maximum wave
+	max_wave = WaveData.Maps[map_name].keys().size()
+
+func on_wave_cleared():
+	if current_wave == max_wave:
+		pass ##Load Victory Screen
+	else:
+		start_next_wave()	
+
 #
 # Game Control
 #
@@ -184,9 +187,7 @@ func reward(reward):
 	UI.update_money_counter(money)
 
 func on_base_damage(damage): #take damage from enemy tanks when they reach the end
-	print(base_health)
 	base_health -= damage
-	print("after hit:" + str(base_health))
 	if damage > base_health:
 		base_health = 0
 		UI.update_health_bar(base_health)
@@ -210,9 +211,7 @@ func _on_PausePlay_pressed(): #pause and play the game with pause button
 		get_tree().paused = false
 		paused = false
 	elif current_wave == 0:
-		current_wave = 1
 		start_next_wave()
-		print("begin")
 	else:
 		get_tree().paused = true
 		paused = true

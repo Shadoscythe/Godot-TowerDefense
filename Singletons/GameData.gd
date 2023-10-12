@@ -47,7 +47,7 @@ var enemy_data = {
 		"reward": 10,
 		"type": "tank"},
 	"RedTank": {
-		"hp": 100,
+		"hp": 150,
 		"speed": 100,
 		"damage": 30,
 		"reward": 20,

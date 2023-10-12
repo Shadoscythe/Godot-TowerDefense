@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://txw0euglwiyi"]
+[gd_scene load_steps=17 format=3 uid="uid://txw0euglwiyi"]
 
 [ext_resource type="Texture2D" uid="uid://cpvgmjw8weqdo" path="res://Assets/Enviroment/Tilesets/terrainTiles_default.png" id="1_n4sfv"]
 [ext_resource type="Texture2D" uid="uid://bnlf30qvn7gk5" path="res://Assets/Enviroment/Props/treeBrown_large.png" id="2_7imkj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b2fjaltioflwk" path="res://Assets/Enviroment/Props/crateMetal.png" id="4_h5dgc"]
 [ext_resource type="Texture2D" uid="uid://cng00tgh0qdbk" path="res://Assets/Enviroment/Props/crateWood.png" id="5_8bmu3"]
 [ext_resource type="PackedScene" uid="uid://k3s6adgajcvo" path="res://Scenes/SupportScenes/WoodCrate.tscn" id="6_lvv04"]
+[ext_resource type="Script" path="res://Scenes/Maps/path.gd" id="7_v7ait"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_07ums"]
 texture = ExtResource("1_n4sfv")
@@ -235,5 +236,8 @@ position = Vector2(736, 160)
 
 [node name="Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_0t1jj")
+script = ExtResource("7_v7ait")
 
 [node name="TowerContainer" type="Node2D" parent="."]
+
+[connection signal="child_exiting_tree" from="Path" to="Path" method="_on_child_exiting_tree"]

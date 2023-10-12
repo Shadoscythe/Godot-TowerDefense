@@ -16,16 +16,9 @@ func _ready():
 	var tile_position = game_scene.map.get_node("TowerExclusion").local_to_map(self.position)
 	game_scene.add_to_exclusion(tile_position)
 
-
-
-
-
-
-
 #
 #	Enemy functions
 #
-
 
 func on_first_hit():
 	health_bar.max_value = hp
