@@ -7,6 +7,7 @@ var damage = GameData.enemy_data[enemy_type]["damage"]
 var reward = GameData.enemy_data[enemy_type]["reward"]
 var health_bar_size = Vector2(hp / 3 + 20, 4)
 var dead = false
+var destroy_animation 
 
 @onready var game_scene = $/root/SceneHandler/GameScene
 @onready var health_bar = $HealthBar

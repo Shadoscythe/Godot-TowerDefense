@@ -1,0 +1,45 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bun33ywbiarom"]
+
+[ext_resource type="Texture2D" uid="uid://buymer2f4u32f" path="res://Assets/Effects/Explosion/explosion1.png" id="1_c4nki"]
+[ext_resource type="Texture2D" uid="uid://chhyalomewxrj" path="res://Assets/Effects/Explosion/explosion2.png" id="2_2yleh"]
+[ext_resource type="Texture2D" uid="uid://bb7wcchffwxgu" path="res://Assets/Effects/Explosion/explosion3.png" id="3_w6kyn"]
+[ext_resource type="Texture2D" uid="uid://tefjq5nd0ih1" path="res://Assets/Effects/Explosion/explosionSmoke4.png" id="4_kap2h"]
+[ext_resource type="Texture2D" uid="uid://cuifgw708vjpr" path="res://Assets/Effects/Explosion/explosionSmoke5.png" id="5_r0kkd"]
+[ext_resource type="Texture2D" uid="uid://bnwese1tc2f62" path="res://Assets/Effects/Explosion/towerDefense_tile021.png" id="6_m0oi6"]
+[ext_resource type="Texture2D" uid="uid://dgp52tb2n38kx" path="res://Assets/Effects/Explosion/towerDefense_tile019.png" id="7_i421a"]
+[ext_resource type="Texture2D" uid="uid://cy3nj850e6gbm" path="res://Assets/Effects/Explosion/towerDefense_tile020.png" id="8_4xno0"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c4nki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2yleh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w6kyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kap2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r0kkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m0oi6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_i421a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4xno0")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"DeathEffect",
+"speed": 10.0
+}]

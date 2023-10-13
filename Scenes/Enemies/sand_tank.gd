@@ -8,6 +8,7 @@ var reward = GameData.enemy_data[enemy_type]["reward"]
 var health_bar_size = Vector2(hp / 3 + 20, 4)
 var dead = false
 
+@onready var destroy_animation = $destroy_HitEffect
 @onready var game_scene = $/root/SceneHandler/GameScene
 @onready var health_bar = $HealthBar
 @onready var impact_area = $Impact
@@ -44,17 +45,22 @@ func hit_scan_impact():
 	impact_area.add_child(new_impact)
 
 func on_hit(damage):
-	hit_scan_impact()  #Change impact types later between projectiles and hitscans
+	hit_scan_impact() #Change impact types later between projectiles and hitscans
 	hp -= damage
 	health_bar.value = hp
 	if hp <= 0:
 		on_destroy()
 		
 func on_destroy():
-	self.queue_free()
+	$TankSprite.modulate = Color("6e6e6e")
+	destroy_animation.visible = true
+	destroy_animation.play("DeathAnimation")
 	dead = true
 	health_bar.set_visible(false)
 	game_scene.reward(reward)
 	$CharacterBody2D.queue_free()
-	await get_tree().create_timer(.2).timeout
+	await get_tree().create_timer(.2).timeout #wait for animation
+	self.queue_free()
 	game_scene.enemies_killed += 1
+	
+	

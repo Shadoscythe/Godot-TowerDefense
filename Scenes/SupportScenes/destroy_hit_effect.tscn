@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bms7iqdi2mmvb"]
+
+[ext_resource type="SpriteFrames" uid="uid://bun33ywbiarom" path="res://Resources/Sprites/cannon_HitEffect.tres" id="1_5ww6g"]
+[ext_resource type="Script" path="res://Scenes/SupportScenes/cannon_t2_hit_effect.gd" id="2_ul22b"]
+
+[node name="destroy_HitEffect" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_5ww6g")
+animation = &"DeathEffect"
+frame = 8
+frame_progress = 1.0
+speed_scale = 2.0
+script = ExtResource("2_ul22b")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
