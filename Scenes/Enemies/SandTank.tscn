@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cia6mgp51opfj"]
 
-[ext_resource type="Texture2D" uid="uid://bjf68utjtsodw" path="res://Assets/Enemies/tank_sand.png" id="1_nxhge"]
 [ext_resource type="Script" path="res://Scenes/Enemies/sand_tank.gd" id="1_ove7o"]
+[ext_resource type="Texture2D" uid="uid://grlwlsa723ha" path="res://Assets/Enemies/PixelTanks/Tank-Green.png" id="2_m73b5"]
 [ext_resource type="Texture2D" uid="uid://cvn733esl30p7" path="res://Assets/UI/Art/HPbar.jpg" id="3_ks2on"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_volvc"]
@@ -17,7 +17,7 @@ script = ExtResource("1_ove7o")
 shape = SubResource("RectangleShape2D_volvc")
 
 [node name="TankSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_nxhge")
+texture = ExtResource("2_m73b5")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 visible = false
