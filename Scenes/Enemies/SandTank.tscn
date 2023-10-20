@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cia6mgp51opfj"]
+[gd_scene load_steps=5 format=3 uid="uid://cia6mgp51opfj"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/sand_tank.gd" id="1_ove7o"]
 [ext_resource type="Texture2D" uid="uid://bjf68utjtsodw" path="res://Assets/Enemies/tank_sand.png" id="2_qk07b"]
 [ext_resource type="Texture2D" uid="uid://cvn733esl30p7" path="res://Assets/UI/Art/HPbar.jpg" id="3_ks2on"]
-[ext_resource type="PackedScene" uid="uid://bms7iqdi2mmvb" path="res://Scenes/SupportScenes/destroy_hit_effect.tscn" id="4_f4w4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_volvc"]
 size = Vector2(46, 42)
@@ -46,7 +45,3 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Impact" type="Node2D" parent="."]
 position = Vector2(-15, -15)
-
-[node name="destroy_HitEffect" parent="." instance=ExtResource("4_f4w4d")]
-visible = false
-frame_progress = 0.705591
