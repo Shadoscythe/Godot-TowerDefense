@@ -6,7 +6,9 @@ signal game_finished(result)
 var base_health = 100
 var paused = false
 var fast_forward_multiplier = 5.0
+
 var enemies_killed = 0
+var towers_placed = 0
 
 # Map Data
 @onready var map = $Map1 #what map are we using
@@ -90,6 +92,7 @@ func verify_and_build():
 		money -= price
 		UI.update_money_counter(money)
 		add_to_exclusion(tile_position)
+		towers_placed += 1
 		if not extend_build_mode:
 			cancel_build_mode()
 	elif build_valid:
@@ -172,7 +175,7 @@ func find_map_max_wave(): #finds the maps maximum wave
 
 func on_wave_cleared():
 	if current_wave == max_wave:
-		pass ##Load Victory Screen
+		victory()
 	else:
 		start_next_wave()	
 
@@ -203,7 +206,14 @@ func game_over():
 	get_tree().paused = true
 	paused = true
 	$UI/HUD.visible = false
-	
+
+func victory():
+	var victory_screen = load ("res://Scenes/UIScenes/Victory.tscn").instantiate()
+	UI.add_child(victory_screen)
+	get_tree().paused = true
+	paused = true
+	$UI/HUD.visible = false
+
 func _on_PausePlay_pressed(): #pause and play the game with pause button
 	if build_mode:
 		cancel_build_mode() 
