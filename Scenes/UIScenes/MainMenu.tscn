@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxnuqr307k1gy"]
+[gd_scene load_steps=7 format=3 uid="uid://bkrpbouj7kynu"]
 
 [ext_resource type="Texture2D" uid="uid://c3f42cmbyyqrr" path="res://Assets/UI/Art/BackGround.png" id="1_2l68r"]
 [ext_resource type="Script" path="res://Scenes/UIScenes/main_menu.gd" id="1_g1f83"]
@@ -43,7 +43,7 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="NewGame" type="TextureButton" parent="MarginContainer/VBoxContainer"]
-self_modulate = Color(0.321569, 0.729412, 0.415686, 1)
+self_modulate = Color(0.219608, 0.592157, 0.819608, 1)
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -77,7 +77,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Settings" type="TextureButton" parent="MarginContainer/VBoxContainer"]
-self_modulate = Color(0.321569, 0.729412, 0.415686, 1)
+self_modulate = Color(0.219608, 0.592157, 0.819608, 1)
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -111,7 +111,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="About" type="TextureButton" parent="MarginContainer/VBoxContainer"]
-self_modulate = Color(0.321569, 0.729412, 0.415686, 1)
+self_modulate = Color(0.219608, 0.592157, 0.819608, 1)
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_horizontal = 4

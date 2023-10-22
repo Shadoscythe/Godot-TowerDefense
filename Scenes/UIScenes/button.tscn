@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://nquqvio6xg6n"]
+
+[ext_resource type="Texture2D" uid="uid://c3jdgqpfq216q" path="res://Assets/UI/Buttons/White/grey_button12.png" id="1_0f6ws"]
+[ext_resource type="Texture2D" uid="uid://die6lq7ejw25e" path="res://Assets/UI/Art/return.png" id="2_5yhql"]
+
+[node name="RetryButton" type="TextureButton"]
+process_mode = 3
+self_modulate = Color(0.219608, 0.592157, 0.819608, 1)
+custom_minimum_size = Vector2(75, 75)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("1_0f6ws")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5yhql")
+expand_mode = 1

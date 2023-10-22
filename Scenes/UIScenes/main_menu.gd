@@ -3,7 +3,7 @@ extends Control
 func _ready():
 	print("main menu")
 	var SceneHandler = get_parent()
-	var NewGameButton = get_node("MarginContainer/VBoxContainer/NewGame")
+	var NewGameButton = $MarginContainer/VBoxContainer/NewGame
 	var QuitButton = get_node("MarginContainer/VBoxContainer/Quit")
 	var SettingsButton = get_node("MarginContainer/VBoxContainer/Settings")
 	var AboutButton = get_node("MarginContainer/VBoxContainer/About")

@@ -6,7 +6,9 @@ signal game_finished(result)
 var base_health = 100
 var paused = false
 var fast_forward_multiplier = 5.0
+
 var enemies_killed = 0
+var towers_placed = 0
 
 # Map Data
 @onready var map = $Map1 #what map are we using
@@ -48,7 +50,7 @@ var Tanks = {                #This dictionary is a workaround in order to get ta
 func _ready():
 	UI.update_money_counter(money)
 	map.get_node("Path").wave_cleared.connect(on_wave_cleared)
-func _process(delta):
+func _process(_delta):
 	if build_mode:
 		update_tower_preview()
 		
@@ -70,7 +72,7 @@ func initiate_build_mode(tower_type):
 	if build_mode:
 		cancel_build_mode()
 	build_type = tower_type + "T1"
-	set_tower_preview(build_type, get_global_mouse_position())
+	set_tower_preview(build_type)
 	build_mode = true
 
 func cancel_build_mode():
@@ -90,6 +92,7 @@ func verify_and_build():
 		money -= price
 		UI.update_money_counter(money)
 		add_to_exclusion(tile_position)
+		towers_placed += 1
 		if not extend_build_mode:
 			cancel_build_mode()
 	elif build_valid:
@@ -100,7 +103,7 @@ func change_color(color):
 	get_node("UI/TowerPreview/RangeIndicator").modulate = Color(color)
 	get_node("UI/TowerPreview/DragTower").modulate = Color(color)
 
-func set_tower_preview(tower_type, mouse_position):
+func set_tower_preview(tower_type):
 	#Set Variables
 	var drag_tower = load("res://Scenes/Towers/" + tower_type + ".tscn").instantiate() #Loads image for build preview
 	drag_tower.set_name("DragTower") #Sets tower preview name
@@ -151,7 +154,7 @@ func start_next_wave():
 	UI.update_wave_counter()
 	await get_tree().create_timer(5.0).timeout #padding between waves
 	retrieve_wave_data(map_name, str(current_wave))
-	spawn_enemies(max_wave)
+	spawn_enemies()
 	
 func retrieve_wave_data(map, wave):                             ###
 	enemy_types_in_wave = WaveData.Maps[map][wave].keys()
@@ -161,7 +164,7 @@ func retrieve_wave_data(map, wave):                             ###
 
 																###
 
-func spawn_enemies(max_waves):
+func spawn_enemies():
 	for i in enemies_in_wave:
 		var new_enemy = Tanks[i].instantiate()
 		path.add_child(new_enemy, true)
@@ -172,7 +175,7 @@ func find_map_max_wave(): #finds the maps maximum wave
 
 func on_wave_cleared():
 	if current_wave == max_wave:
-		pass ##Load Victory Screen
+		victory()
 	else:
 		start_next_wave()	
 
@@ -203,7 +206,14 @@ func game_over():
 	get_tree().paused = true
 	paused = true
 	$UI/HUD.visible = false
-	
+
+func victory():
+	var victory_screen = load ("res://Scenes/UIScenes/Victory.tscn").instantiate()
+	UI.add_child(victory_screen)
+	get_tree().paused = true
+	paused = true
+	$UI/HUD.visible = false
+
 func _on_PausePlay_pressed(): #pause and play the game with pause button
 	if build_mode:
 		cancel_build_mode() 
