@@ -50,7 +50,7 @@ var Tanks = {                #This dictionary is a workaround in order to get ta
 func _ready():
 	UI.update_money_counter(money)
 	map.get_node("Path").wave_cleared.connect(on_wave_cleared)
-func _process(delta):
+func _process(_delta):
 	if build_mode:
 		update_tower_preview()
 		
@@ -72,7 +72,7 @@ func initiate_build_mode(tower_type):
 	if build_mode:
 		cancel_build_mode()
 	build_type = tower_type + "T1"
-	set_tower_preview(build_type, get_global_mouse_position())
+	set_tower_preview(build_type)
 	build_mode = true
 
 func cancel_build_mode():
@@ -103,7 +103,7 @@ func change_color(color):
 	get_node("UI/TowerPreview/RangeIndicator").modulate = Color(color)
 	get_node("UI/TowerPreview/DragTower").modulate = Color(color)
 
-func set_tower_preview(tower_type, mouse_position):
+func set_tower_preview(tower_type):
 	#Set Variables
 	var drag_tower = load("res://Scenes/Towers/" + tower_type + ".tscn").instantiate() #Loads image for build preview
 	drag_tower.set_name("DragTower") #Sets tower preview name
@@ -154,7 +154,7 @@ func start_next_wave():
 	UI.update_wave_counter()
 	await get_tree().create_timer(5.0).timeout #padding between waves
 	retrieve_wave_data(map_name, str(current_wave))
-	spawn_enemies(max_wave)
+	spawn_enemies()
 	
 func retrieve_wave_data(map, wave):                             ###
 	enemy_types_in_wave = WaveData.Maps[map][wave].keys()
@@ -164,7 +164,7 @@ func retrieve_wave_data(map, wave):                             ###
 
 																###
 
-func spawn_enemies(max_waves):
+func spawn_enemies():
 	for i in enemies_in_wave:
 		var new_enemy = Tanks[i].instantiate()
 		path.add_child(new_enemy, true)

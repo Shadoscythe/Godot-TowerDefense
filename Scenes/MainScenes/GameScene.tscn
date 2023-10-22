@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dw548hdpeouam"]
+[gd_scene load_steps=16 format=3 uid="uid://dw548hdpeouam"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/game_scene.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://txw0euglwiyi" path="res://Scenes/Maps/map_1.tscn" id="1_sw4b5"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://3k01jije8d01" path="res://Assets/UI/Art/plus.png" id="13_8sqe3"]
 [ext_resource type="FontFile" uid="uid://b1wdchuh1282x" path="res://Assets/Fonts/squarefont/Square.ttf" id="13_87cm3"]
 [ext_resource type="Texture2D" uid="uid://cvn733esl30p7" path="res://Assets/UI/Art/HPbar.jpg" id="14_7v07j"]
-[ext_resource type="Script" path="res://Scenes/MainScenes/ui_health_bar.gd" id="15_xvlqt"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_875xw")
@@ -291,7 +290,6 @@ texture_under = ExtResource("14_7v07j")
 texture_progress = ExtResource("14_7v07j")
 tint_under = Color(0.262745, 0.262745, 0.262745, 1)
 tint_progress = Color(0.427451, 0.52549, 0, 1)
-script = ExtResource("15_xvlqt")
 
 [node name="HealthCounter" type="Label" parent="UI/HUD/InfoBar/InfoBarMarginContainer/InfoBarHbox/HealthInfo/HealthBar"]
 layout_mode = 1
