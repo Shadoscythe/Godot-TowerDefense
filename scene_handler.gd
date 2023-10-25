@@ -6,7 +6,7 @@ func _ready():
 	load_ui_scene("MainMenu")
 
 func on_new_game_pressed():
-	load_game_scene("GameScene") ###CHANGE LATER TO USE MAP SELECTION MENU###
+	load_ui_scene("LevelSelect")
 	
 func on_quit_pressed():
 	get_tree().quit()
@@ -36,7 +36,10 @@ func load_game_scene(scene):
 	game_scene = load("res://Scenes/MainScenes/" + scene + ".tscn").instantiate()
 	add_child(game_scene)
 
-	
+func load_level(level_number):
+	print("work")
+	load_game_scene("GameScene")
+	$GameScene.load_map("map_" + str(level_number))
 
 
 

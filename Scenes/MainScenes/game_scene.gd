@@ -11,10 +11,10 @@ var enemies_killed = 0
 var towers_placed = 0
 
 # Map Data
-@onready var map = $Map1 #what map are we using
+var map #what map are we using
 @onready var UI = $UI
-@onready var path = map.get_node("Path")
-@onready var exclusion_array = map.get_node("TowerExclusion").get_used_cells(0) #store occupied tiles in an array
+var path 
+var exclusion_array #store occupied tiles in an array
 
 # Build Data
 var extend_build_mode #Is key being pressed to extend build mode
@@ -32,8 +32,8 @@ signal tower_built
 var current_wave = 0 #what wave number is the current wave
 var enemies_in_wave = [] #how many enemies left in wave
 var enemy_types_in_wave #what enemy types are in the wave
-var map_name = "Map1"
-@onready var max_wave = WaveData.Maps[map_name].keys().size()
+var map_name 
+var max_wave
 
 #Tank preload
 var SandTank = preload("res://Scenes/Enemies/SandTank.tscn")
@@ -49,7 +49,8 @@ var Tanks = {                #This dictionary is a workaround in order to get ta
 
 func _ready():
 	UI.update_money_counter(money)
-	map.get_node("Path").wave_cleared.connect(on_wave_cleared)
+	#load_map("map_2")
+
 func _process(_delta):
 	if build_mode:
 		update_tower_preview()
@@ -63,7 +64,20 @@ func _unhandled_input(event):
 		extend_build_mode = true
 	if event.is_action_released("ui_modifier") and build_mode:	
 		extend_build_mode = false
-		
+
+func load_map(map_selection):
+	var MapContainer = %MapContainer
+	var map_to_load = load("res://Scenes/Maps/" + map_selection + ".tscn")
+	#map = $Map2
+	map = map_to_load.instantiate()
+	add_child(map)
+	#MapContainer.add_child(map.instantiate())
+	path = map.get_node("Path")
+	print(path)
+	exclusion_array = map.get_node("TowerExclusion").get_used_cells(0)
+	path.wave_cleared.connect(on_wave_cleared)
+	max_wave = WaveData.Maps[map_selection].keys().size()
+	map_name = map_selection
 #
 # Building Functions
 #

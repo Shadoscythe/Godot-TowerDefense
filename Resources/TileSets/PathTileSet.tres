@@ -1,6 +1,10 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dsco4v40h17sg"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dsco4v40h17sg"]
 
+[ext_resource type="PackedScene" uid="uid://k3s6adgajcvo" path="res://Scenes/SupportScenes/WoodCrate.tscn" id="1_3hx1c"]
 [ext_resource type="Texture2D" uid="uid://b1axn77gyc45j" path="res://Resources/TileSets/FullTileSet.png" id="4_ai2jw"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_k34ec"]
+scenes/1/scene = ExtResource("1_3hx1c")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bu6d"]
 texture = ExtResource("4_ai2jw")
@@ -204,3 +208,4 @@ terrain_set_0/terrain_2/color = Color(0.470588, 0.34902, 0.921569, 1)
 terrain_set_0/terrain_3/name = "SandPath"
 terrain_set_0/terrain_3/color = Color(0, 0.513726, 0.592157, 1)
 sources/3 = SubResource("TileSetAtlasSource_7bu6d")
+sources/0 = SubResource("TileSetScenesCollectionSource_k34ec")

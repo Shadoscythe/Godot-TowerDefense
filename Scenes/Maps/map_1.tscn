@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://txw0euglwiyi"]
+[gd_scene load_steps=6 format=3 uid="uid://txw0euglwiyi"]
 
 [ext_resource type="TileSet" uid="uid://dsco4v40h17sg" path="res://Resources/TileSets/PathTileSet.tres" id="1_6v8up"]
+[ext_resource type="Script" path="res://Scenes/Maps/map.gd" id="1_iq1wo"]
 [ext_resource type="PackedScene" uid="uid://k3s6adgajcvo" path="res://Scenes/SupportScenes/WoodCrate.tscn" id="6_lvv04"]
 [ext_resource type="Script" path="res://Scenes/Maps/path.gd" id="7_v7ait"]
 
@@ -10,7 +11,8 @@ _data = {
 }
 point_count = 30
 
-[node name="Map1" type="Node2D"]
+[node name="map_1" type="Node2D"]
+script = ExtResource("1_iq1wo")
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = ExtResource("1_6v8up")

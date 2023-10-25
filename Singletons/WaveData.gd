@@ -1,7 +1,7 @@
 extends Node
 
 var Maps = {
-	"Map1": {
+	"map_1": {
 		"1": {
 			"SandTank": 3,
 			"RedTank": 0},
@@ -13,7 +13,7 @@ var Maps = {
 			"RedTank": 2}
 		
 		},
-	"Map2": {
+	"map_2": {
 		"1":{
 			"SandTank": 5,
 		}
